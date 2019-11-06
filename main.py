@@ -188,8 +188,8 @@ def train(train_loader, model, criterion, optimizer, epoch):
 
         # measure accuracy and record loss
         prec1, prec1 = accuracy(y_pred.data, target, topk=(1, 1))
-        losses.update(loss.data[0], images.size(0))
-        acc.update(prec1[0], images.size(0))
+        losses.update(loss.data, images.size(0))
+        acc.update(prec1, images.size(0))
 
         # compute gradient and do SGD step
         optimizer.zero_grad()
@@ -229,8 +229,8 @@ def validate(val_loader, model, criterion):
 
         # measure accuracy and record loss
         prec1, temp_var = accuracy(y_pred.data, labels, topk=(1, 1))
-        losses.update(loss.data[0], images.size(0))
-        acc.update(prec1[0], images.size(0))
+        losses.update(loss.data, images.size(0))
+        acc.update(prec1, images.size(0))
 
         # measure elapsed time
         batch_time.update(time.time() - end)
